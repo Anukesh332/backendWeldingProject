@@ -1,0 +1,163 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "WeldingSystem Service API created with express and DynamoDB",
+      "version": "1.0.0",
+      "title": "Welding System Service API",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "email": "anukesh@godrej.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "paths": {
+      "/backgastype/get": {
+        "get": {
+          "tags": [
+            "weldingsystem"
+          ],
+          "summary": "Get all weldingsystem Requests",
+          "description": "Get the details of all weldingsystem Requests in the table",
+          "operationId": "getAllBackgastypes",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/weldingsystem"
+                }
+              }
+            }
+          }
+        }
+      } ,
+    "/backgastype": {
+    "post": {
+      "tags": [
+        "weldingsystem"
+      ],
+      "summary": "Add Welding Consumable record",
+      "description": "Add Welding Consumable record",
+      "operationId": "addBackgastype",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "in": "body",
+          "name": "body",
+          "description": "Welding Consumable record that needs to be added to the database",
+          "required": true,
+          "schema": {
+              "$ref": "#/definitions/weldingsystem"
+          }
+      }
+      ],
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/weldingsystem"
+            }
+          }
+        }
+      }
+    }
+  },
+  "/backgastype/update/{id}": {
+    "post": {
+      "tags": [
+        "weldingsystem"
+      ],
+      "summary": "Update the WldConsumableRecord",
+      "description": "Update the details of the WldConsumableRecord",
+      "operationId": "updateBackgastype",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "in": "body",
+          "name": "body",
+          "description": "Welding Consumable record that needs to be update to the database",
+          "required": true,
+          "schema": {
+              "$ref": "#/definitions/weldingsystem"
+          }
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id to search",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/weldingsystem"
+            }
+          }
+        }
+      }
+    }
+  } ,
+  "/backgastype/delete/{id}": {
+    "post": {
+      "tags": [
+        "weldingsystem"
+      ],
+      "summary": "Update the WldConsumableRecord",
+      "description": "Update the details of the WldConsumableRecord",
+      "operationId": "deleteBackgastype",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "in": "body",
+          "name": "body",
+          "description": "Welding Consumable record that needs to be update to the database",
+          "required": true,
+          "schema": {
+              "$ref": "#/definitions/weldingsystem"
+          }
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id to search",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/weldingsystem"
+            }
+          }
+        }
+      }
+    }
+  } 
+}
+}
+  

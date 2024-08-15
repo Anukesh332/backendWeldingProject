@@ -1,0 +1,52 @@
+org: anukesh369
+app: projectlive-api
+service: traveller-api
+frameworkVersion: '2 || 3'
+
+custom:
+  tableName: 'welding_master'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: '20201221'
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - Fn::GetAtt: [ UsersTable, Arn ]
+  environment:
+    TABLENAME: ${self:custom.tableName}
+    NODE_ENV: 'production'
+    REGION: 'us-east-1'
+    ENDPOINT: 'https://dynamodb.us-east-1.amazonaws.com'
+
+functions:
+  api:
+    handler: handler.handler
+    layers: 
+      - 	arn:aws:lambda:us-east-1:442134548185:layer:comman2:1
+    events:
+      - httpApi: '*'
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: wld_master_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: wld_master_id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.tableName}
